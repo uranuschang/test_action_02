@@ -37,7 +37,6 @@ jobs:
             --include-qt-plugins=sensible,styles `
             --nofollow-import-to=pytest,unittest,tkinter `
             --windows-disable-console `
-            # --windows-icon-from-ico=assets/logo.ico `
             --output-dir=dist `
             main.py
 
