@@ -34,7 +34,7 @@ jobs:
             --standalone `
             --onefile `
             --plugin-enable=pyside6 `
-            --accept-downloads `
+            --assume-yes-for-downloads `
             --include-qt-plugins=sensible,styles `
             --nofollow-import-to=pytest,unittest,tkinter `
             --windows-disable-console `
