@@ -38,7 +38,7 @@ jobs:
             --nofollow-import-to=pytest,unittest,tkinter `
             --windows-disable-console `
             --output-dir=dist `
-            main.py
+            src/main.py
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
