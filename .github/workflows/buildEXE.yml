@@ -43,5 +43,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-app
-          path: dist/*.exe
+          name: windows-app-folder
+          path: dist/main.dist/  # 上傳整個編譯後的資料夾
