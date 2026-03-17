@@ -36,6 +36,7 @@ jobs:
             --plugin-enable=pyside6 `
             --assume-yes-for-downloads `
             --include-qt-plugins=sensible,styles `
+            --include-windows-runtime-dlls=yes `
             --nofollow-import-to=pytest,unittest,tkinter `
             --windows-disable-console `
             --output-dir=dist `
