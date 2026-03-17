@@ -1,1 +1,48 @@
+name: Build Windows App with Nuitka
 
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          # 快取 pip 依賴可以加速後續編譯
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install nuitka zstandard
+          # 如果你的程式有其他依賴，請在此安裝
+          # pip install -r requirements.txt
+
+      - name: Build EXE with Nuitka
+        run: |
+          # 建議加上 --standalone 產生獨立資料夾，或是 --onefile 產生單一檔案
+          python -m nuitka `
+            --standalone `
+            --onefile `
+            --plugin-enable=pyside6 `
+            --include-qt-plugins=sensible,styles `
+            --nofollow-import-to=pytest,unittest,tkinter `
+            --windows-disable-console `
+            # --windows-icon-from-ico=assets/logo.ico `
+            --output-dir=dist `
+            main.py
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-app
+          path: dist/*.exe
